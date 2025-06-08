@@ -18,8 +18,7 @@ def run_code_with_piston(language, code):
     version = STABLE_VERSIONS.get(language)
 
     if version is None:
-        print(f"Unsupported language for Piston: {language}")
-        return False
+        return False, f"Unsupported language for Piston: {language}"
 
     payload = {
         "language": language,
@@ -30,12 +29,9 @@ def run_code_with_piston(language, code):
     try:
         response = requests.post(url, json=payload)
         data = response.json()
-
-        # Debug: Uncomment to inspect actual Piston output
-        # print("Piston Response:", data)
-
-        return data.get("run", {}).get("code") == 0
-
+        run_result = data.get("run", {})
+        success = run_result.get("code", -1) == 0
+        error_output = run_result.get("stderr") or run_result.get("output") or "Unknown error"
+        return success, error_output.strip()
     except Exception as e:
-        print(f"Piston error for {language}: {e}")
-        return False
+        return False, str(e)
