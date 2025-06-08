@@ -88,16 +88,24 @@ def process_file(input_file, output_file, report_path, focus):
     lang = get_language_from_extension(ext)
 
     # Step 1: Check if original code runs successfully using Piston
-    if not run_code_with_piston(lang, original_code):
+    success, error_message = run_code_with_piston(lang, original_code)
+    if not success:
         error_report = (
+            "### ❌ Test Failed – Original Code Did Not Compile\n\n"
             "**Test Results**\n"
             "- Before Improvement: ❌ Failed\n"
             "- After Improvement: ⏭️ Skipped\n\n"
-            "**Reason:** Original code did not execute successfully, so AI improvement was not applied.\n"
+            "**Reason:**\n"
+            "```text\n"
+            f"{error_message.strip()[:500]}\n"
+            "```\n"
+            "⏭️ Skipped AI improvement due to code failure.\n"
         )
+
         append_to_report(report_path, input_file, focus, error_report)
         print("Original code failed to run. Skipping improvement.")
         return
+
 
     # Step 2: Analyze metrics for original code
     try:
