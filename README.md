@@ -56,17 +56,6 @@ AI-Code-Review-Agent/
 python main.py --input ./sample --output ./improved_code --focus readability
 ```
 
-🧪 **Test Execution Modes:**
-- **Basic Check:** Uses [Piston API](https://github.com/engineer-man/piston) to run code and verify it executes without errors
-- **Deeper Validation:** Automatically uses appropriate frameworks based on language:
-  - Python → Pytest  
-  - C++ → Google Test  
-  - JavaScript → Jest or Mocha  
-  - Java → JUnit  
-  - C# → xUnit  
-  - Go → GoTest
-
-
 ### Arguments:
 
 | Flag       | Description                                           |
@@ -76,6 +65,15 @@ python main.py --input ./sample --output ./improved_code --focus readability
 | `--focus`  | Review focus area (`readability`, `performance`, etc.) |
 
 📝 **Note:** You can choose any `--input` and `--output` folder paths. The program runs relative to the location of `main.py`.
+🧪 **Test Execution Modes:**
+- **Basic Check:** Uses [Piston API](https://github.com/engineer-man/piston) to run code and verify it executes without errors
+- **Deeper Validation:** Automatically uses appropriate frameworks based on language:
+  - Python → Pytest  
+  - C++ → Google Test  
+  - JavaScript → Jest or Mocha  
+  - Java → JUnit  
+  - C# → xUnit  
+  - Go → GoTest
 
 ---
 
