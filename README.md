@@ -8,7 +8,7 @@ An intelligent code review and improvement tool that uses **Google Gemini AI** t
 
 - ✅ Automatically reviews and improves code (Python, C++, JavaScript, etc.)
 - 📊 Analyzes code quality before and after AI improvement
-- 🧪 Tests code execution using [Piston API](https://github.com/engineer-man/piston)
+- 🧪 Testing Support: Uses Piston API for basic execution and language-specific frameworks (e.g., Pytest, JUnit, Google Test) for deeper correctness checks
 - 📄 Generates a detailed `report.md` with summary of improvements
 - 📁 Supports reviewing entire codebases or single files
 - 🔁 Modular design for extension (e.g., add performance or security focus)
@@ -55,6 +55,17 @@ AI-Code-Review-Agent/
 ```bash
 python main.py --input ./sample --output ./improved_code --focus readability
 ```
+
+🧪 **Test Execution Modes:**
+- **Basic Check:** Uses [Piston API](https://github.com/engineer-man/piston) to run code and verify it executes without errors
+- **Deeper Validation:** Automatically uses appropriate frameworks based on language:
+  - Python → Pytest  
+  - C++ → Google Test  
+  - JavaScript → Jest or Mocha  
+  - Java → JUnit  
+  - C# → xUnit  
+  - Go → GoTest
+
 
 ### Arguments:
 
@@ -115,8 +126,10 @@ def main():
 
 - [ ] Add security and performance review focus modes
 - [ ] Web UI for uploading files and viewing reports
+- [ ] Integrate structured multi-language testing by automatically selecting appropriate frameworks
 - [ ] Add more languages support (PHP, TS, Ruby)
 - [ ] Generate before/after diffs visually
+
 
 ---
 
